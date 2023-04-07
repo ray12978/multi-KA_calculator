@@ -1,0 +1,19 @@
+{
+  "version": "4.6.0",
+  "flags": {
+    "Education": false,
+    "Product": true,
+    "Promotion": false,
+    "Introduction": false,
+    "Festival": true,
+    "Real estate": false,
+    "New house": false,
+    "Exhibition": false,
+    "Others": false
+  },
+  "shapes": [],
+  "imagePath": "23846909425060759.png",
+  "imageData": null,
+  "imageHeight": 1279,
+  "imageWidth": 1279
+}

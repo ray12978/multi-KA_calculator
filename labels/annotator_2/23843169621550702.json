@@ -1,0 +1,19 @@
+{
+  "version": "4.6.0",
+  "flags": {
+    "Education": false,
+    "Product": false,
+    "Promotion": false,
+    "Introduction": false,
+    "Festival": false,
+    "Real estate": false,
+    "New house": false,
+    "Exhibition": false,
+    "Others": true
+  },
+  "shapes": [],
+  "imagePath": "..\\..\\data_teach_impage\\23843169621550702.png",
+  "imageData": null,
+  "imageHeight": 720,
+  "imageWidth": 1280
+}

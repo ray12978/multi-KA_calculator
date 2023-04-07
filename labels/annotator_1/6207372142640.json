@@ -1,0 +1,19 @@
+{
+  "version": "5.0.1",
+  "flags": {
+    "Education": false,
+    "Product": false,
+    "Promotion": false,
+    "Introduction": false,
+    "Festival": false,
+    "Real estate": false,
+    "New house": false,
+    "Exhibition": false,
+    "Others": true
+  },
+  "shapes": [],
+  "imagePath": "..\\images\\6207372142640.png",
+  "imageData": null,
+  "imageHeight": 720,
+  "imageWidth": 514
+}
