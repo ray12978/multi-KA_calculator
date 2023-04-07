@@ -4,7 +4,7 @@
 
 ### prepare files
 
-#### eample:
+#### eample
 ```
 labels
 |-annontator_1
@@ -12,7 +12,7 @@ labels
 
 the sub-fold name must be annontator_{i}
 ```
-run script 
+run script
 ```
 python run.py -f ./labels
 ```
