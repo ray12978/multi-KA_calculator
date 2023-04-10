@@ -16,7 +16,7 @@
 
 
 the sub-folder name must be "annontator_{i}"
-number of files in each annontator must be equal
+number of files in each annontator folder must be equal
 ```
 run script
 ```
