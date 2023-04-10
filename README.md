@@ -7,8 +7,8 @@
 #### eample
 ```
 labels
-|-annontator_1
-|-annontator_2
+|--annontator_1
+|--annontator_2
 
 the sub-folder name must be "annontator_{i}"
 number of files in each annontator must be equal
