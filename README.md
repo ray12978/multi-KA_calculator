@@ -8,8 +8,12 @@
 ```
 ├──labels
 |    ├──annontator_1
+|    |    ├── data1.json
+|    |    └── ...
 |    ├──annontator_2
-|    |
+|    |    ├── data1.json
+|    |    └── ...
+
 
 the sub-folder name must be "annontator_{i}"
 number of files in each annontator must be equal
