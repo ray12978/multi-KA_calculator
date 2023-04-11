@@ -1,4 +1,4 @@
-# multi-Krippendorff's Alphaalculator
+# multi-Krippendorff's Alpha alculator
 
 ## How to use
 
