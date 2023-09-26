@@ -1,3 +1,5 @@
+import glob
+import os
 from os import listdir
 import pandas as pd
 import re
@@ -8,17 +10,18 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--fold_path', help='The directory path used for calculating annotation consistency.',
                         type=str, default='./labels', dest='fold_path')
-
     args = parser.parse_args()
     return args
 
 
-def main(args):
-    Folder_Path = args.fold_path
+def calcu_agreement(Folder_Path):
     Folders = list(filter(lambda x: 'annotator' in x, listdir(Folder_Path)))
     print('Fold path: "{0}"\nCalculating...\nThe total number of annotators is {1}'
           .format(args.fold_path, len(Folders)))
-
+    if len(Folders) == 1:
+        KripAlpha = 0
+        print(f'Krippendorff\'s Alpha is {KripAlpha}')
+        return
     i = 0
     j = 0
 
@@ -28,13 +31,16 @@ def main(args):
     if not Row_indices:
         Row_indices = Folders
 
-    Column_annotator = listdir(Folder_Path + '\\' + 'annotator_1')
+    Column_annotator = list(
+        set(list(map(lambda x: x.split('\\')[-1], glob.glob(os.path.join(Folder_Path, '*', '*.json'))))))
 
     DF_AnnotateInfo = pd.DataFrame(index=Row_indices, columns=Column_annotator)
     for folder_i in Folders:
         File_Path = Folder_Path + '\\' + folder_i
         Files = listdir(File_Path)
-
+        if len(Files) == 0:
+            print('Error')
+            raise FileNotFoundError('Files Length is 0')
         for file_i in Files:
             with open(File_Path + '\\' + file_i, encoding='utf8') as f:
                 Annotated = f.read()
@@ -73,12 +79,12 @@ def main(args):
 
         for j in Col_subsets:
             for k in Col_sets:
-                if set(j).issubset(k):
-                    cnt_label += 1
+                if isinstance(j, str) and isinstance(k, str):
+                    if set(j).issubset(k):
+                        cnt_label += 1
         Total_label_num.append(str(cnt_label))
     DF_AnnotateInfo.loc[len(DF_AnnotateInfo.index)] = Total_label_num
     DF_AnnotateInfo = DF_AnnotateInfo.rename(index={DF_AnnotateInfo.index[-1]: "nl"})
-
 
     Row_indices = Label_subset
     Column_annotator = Label_subset
@@ -111,7 +117,7 @@ def main(args):
                             Minuend = Minuend + Dic_AnnInfo_Col[AnnInfo_key]
                     Minuend = Minuend - dup_labelnum
 
-                    if DF_CoinMat.columns[i] == DF_CoinMat.index[j]:
+                    if DF_CoinMat.columns[i] == DF_CoinMat.index[j] and nl - 1 != 0:
                         if dup_labelnum > 1 and Minuend == 0:
                             CoinMat_Value = CoinMat_Value + round(1 * dup_labelnum / (nl - 1), 4)
                         elif dup_labelnum >= 1 and Minuend > 0:
@@ -178,6 +184,10 @@ def main(args):
 
     KripAlpha = 1.0 - (Total_CoinMat_num - 1.0) * (PVMutiByDelta / N1and2MutiByDelta)
     print(f'Krippendorff\'s Alpha is {KripAlpha}')
+
+
+def main(args):
+    calcu_agreement(args.fold_path)
 
 
 if __name__ == '__main__':
