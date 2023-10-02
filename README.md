@@ -2,9 +2,9 @@
 
 ## How to use
 
-### prepare files
+### Prepare files
 
-#### eample
+#### Eample
 ```
 labels
 |-annontator_1
@@ -27,7 +27,7 @@ cd multi-KA_calculator
 pip install -r requirements.txt
 ```
 
-#### run script
+#### Run script
 ```
 python run.py -f ./labels
 ```
